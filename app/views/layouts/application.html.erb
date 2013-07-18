@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400italic' rel='stylesheet' type='text/css'>
+  <title>EightPx</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "modernizr.min" %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript">
+$(document).ready(function() {
+    // Only do anything if the browser does not support placeholders
+    if (!Modernizr.input.placeholder) {
+
+        // Format all elements with the placeholder attribute and insert it as a value
+        $('[placeholder]').each(function() {
+            if ($(this).val() == '') {
+                $(this).val($(this).attr('placeholder'));
+                $(this).addClass('placeholder');
+            }
+            $(this).focus(function() {
+                if ($(this).val() == $(this).attr('placeholder') && $(this).hasClass('placeholder')) {
+                    $(this).val('');
+                    $(this).removeClass('placeholder');
+                }
+            }).blur(function() {
+                if($(this).val() == '') {
+                    $(this).val($(this).attr('placeholder'));
+                    $(this).addClass('placeholder');
+                }
+            });
+        });
+
+        // Clean up any placeholders if the form gets submitted
+        $('[placeholder]').parents('form').submit(function() {
+            $(this).find('[placeholder]').each(function() {
+                if ($(this).val() == $(this).attr('placeholder') && $(this).hasClass('placeholder')) {
+                    $(this).val('');
+                }
+            });
+        });
+
+        // Clean up any placeholders if the page is refreshed
+        window.onbeforeunload = function() {
+            $('[placeholder]').each(function() {
+                if ($(this).val() == $(this).attr('placeholder') && $(this).hasClass('placeholder')) {
+                    $(this).val('');
+                }
+            });
+        };
+    }
+});
+</script>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

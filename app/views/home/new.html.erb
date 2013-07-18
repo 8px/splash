@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="content">
+      <div class="logo_content">
+      <%= image_tag("logo_splash.png", :width => "159", :height => "147", :class => "") %> 
+      </div>
+      <div class="content_form">
+            <p class="text_high_splash"><%= image_tag("img_arrow.png", :style => "position: relative;margin-right:25px;top:5px;") %>OLÁ!</p>
+            <p class="text_splash">
+              Nós somos a <span class="text_high_splash">8px</span>, um coletivo de profissionais criativos apaixonados por
+              tecnologia, que buscam a perfeição dentro das melhores soluções digitais 
+              explorando ao extremo design e tecnologia.
+          </p>
+
+            <p class="text_splash">
+            <span class="text_high_splash">
+              Prazer! 
+            </span><br />           
+              Que saber como podemos ajudar o seu negócio? <br /> 
+              Entre em contato conosco através do formulário abaixo, ou pelo e-mail:<br /> 
+            <span class="text_high_splash">ola@8px.com.br</span>
+            </p>
+            <%= form_for @home, :as => "post", :url => new_home_path do |f| %>
+            <%= f.text_field :name, :placeholder => "Nome" %>
+            <%= f.text_field :email, :placeholder => "Email" %>
+            <%= f.text_field :message, :placeholder => "Mensagem" %>
+            <%= image_submit_tag("bt_enviar.png", :width => "100%", :height => "47") %>
+          <% end %>
+    </div>
+
+    <!-- end .content --></div>
+  <!-- end .container --></div>
